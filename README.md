@@ -81,3 +81,10 @@ const initialState = {
 3. 匯入 slice
 4. 透過 configureStore 設定 reducer
 5. 匯出 store
+
+<br>
+
+## 使用 store
+
+1. 在 main.jsx 下 import Provider
+2. 匯入 store 作為 Provider 的 props 傳入
