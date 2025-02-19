@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import { Modal } from "bootstrap";
 import Pagination from "../components/Pagination";
 import ProductModal from "../components/ProductModal";
 import DelProductModal from "../components/DelProductModal";
+import Toast from "../components/Toast";
 
 // 環境變數
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -198,6 +198,8 @@ function ProductPage({ setIsLogin }) {
         setIsOpen={setIsDelProductModalOpen}
         getProducts={getProducts}
       />
+
+      <Toast />
     </>
   );
 }
