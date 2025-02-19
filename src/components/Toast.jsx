@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Toast as BsToast } from "bootstrap";
 import { removeMessage } from "../redux/toastSlice";
 
+const TOAST_DURATION = 2000;
+
 export default function Toast() {
   const messages = useSelector((state) => state.toast.messages);
 
@@ -20,7 +22,7 @@ export default function Toast() {
 
         setTimeout(() => {
           dispatch(removeMessage(message.id));
-        }, 2000);
+        }, TOAST_DURATION);
       }
     });
   }, [messages]);
