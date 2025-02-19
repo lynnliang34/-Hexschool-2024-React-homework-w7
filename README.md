@@ -33,3 +33,41 @@ npm i @reduxjs/toolkit react-redux
   </div>
 </div>
 ```
+
+<br>
+
+## 建立 slice
+
+1. 在 /src/redux 下新增 slices 資料夾（可略過直接在 redux 資料夾下新增檔案）
+2. 新增 slice 檔案
+3. 匯出 slice.reducer
+
+初始狀態可以設成：
+
+```jsx
+const initialState = { messages: [] };
+```
+
+每個 message 是一個物件，預計會長成：
+
+```jsx
+{
+  id,
+  text,
+  status: 'success' || 'failed'
+}
+```
+
+測試資料：
+
+```jsx
+const initialState = {
+  messages: [
+    {
+      id: Date.now(),
+      text: "hello",
+      status: "success",
+    },
+  ],
+};
+```
