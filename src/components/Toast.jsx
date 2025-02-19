@@ -25,6 +25,10 @@ export default function Toast() {
     });
   }, [messages]);
 
+  const handleDismiss = (message_id) => {
+    dispatch(removeMessage(message.id));
+  };
+
   return (
     <div className="position-fixed top-0 end-0 p-3" style={{ zIndex: 1000 }}>
       {messages.map((message) => (
@@ -45,6 +49,7 @@ export default function Toast() {
               {message.status === "success" ? "成功" : "失敗"}
             </strong>
             <button
+              onClick={() => handleDismiss(message.id)}
               type="button"
               className="btn-close"
               aria-label="Close"
