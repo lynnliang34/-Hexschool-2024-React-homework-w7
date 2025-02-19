@@ -71,6 +71,13 @@ function ProductModal({
           is_enabled: modalData.is_enabled ? 1 : 0,
         },
       });
+
+      dispatch(
+        pushMessage({
+          text: "新增產品成功",
+          status: "success",
+        })
+      );
     } catch (error) {
       // alert("新增產品失敗");
       // console.log(error);
@@ -108,7 +115,17 @@ function ProductModal({
         })
       );
     } catch (error) {
-      alert("更新產品失敗");
+      // alert("更新產品失敗");
+      // console.log(error);
+
+      const { message } = error.response.data;
+
+      dispatch(
+        pushMessage({
+          text: message.join("、"),
+          status: "failed",
+        })
+      );
     }
   };
 

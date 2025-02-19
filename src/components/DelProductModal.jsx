@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useRef } from "react";
 import { Modal } from "bootstrap";
+import { useDispatch } from "react-redux";
+import { pushMessage } from "../redux/toastSlice";
 
 // 環境變數
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -9,6 +11,8 @@ const API_PATH = import.meta.env.VITE_API_PATH;
 function DelProductModal({ tempProduct, isOpen, setIsOpen, getProducts }) {
   // 控制刪除產品的 Modal
   const delProductModalRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   // 初始化 Bootstrap Modal，關閉時不會自動加背景遮罩。
   useEffect(() => {
@@ -46,8 +50,24 @@ function DelProductModal({ tempProduct, isOpen, setIsOpen, getProducts }) {
           },
         }
       );
+
+      dispatch(
+        pushMessage({
+          text: "刪除產品成功",
+          status: "success",
+        })
+      );
     } catch (error) {
-      alert("刪除產品失敗");
+      // alert("刪除產品失敗");
+
+      const { message } = error.response.data;
+
+      dispatch(
+        pushMessage({
+          text: message,
+          status: "failed",
+        })
+      );
     }
   };
 
