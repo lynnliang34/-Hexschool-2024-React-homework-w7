@@ -4,6 +4,7 @@ import Pagination from "../components/Pagination";
 import ProductModal from "../components/ProductModal";
 import DelProductModal from "../components/DelProductModal";
 import Toast from "../components/Toast";
+import ReactLoading from "react-loading";
 
 // 環境變數
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -27,10 +28,14 @@ function ProductPage({ setIsLogin }) {
   // 存放產品列表的狀態
   const [productList, setProductList] = useState([]);
 
+  // 螢幕 loading
+  const [isScreenLoading, setIsScreenLoading] = useState(false);
+
   // 獲取產品列表
   // 向後端 API 取得產品列表，並更新 productList
   const getProducts = async (page = 1) => {
     try {
+      setIsScreenLoading(true);
       const res = await axios.get(
         `${BASE_URL}/api/${API_PATH}/admin/products?page=${page}`
       );
@@ -38,6 +43,8 @@ function ProductPage({ setIsLogin }) {
       setPageInfo(res.data.pagination);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsScreenLoading(false);
     }
   };
 
@@ -222,6 +229,20 @@ function ProductPage({ setIsLogin }) {
       />
 
       <Toast />
+
+      {isScreenLoading && (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(255,255,255,0.3)",
+            zIndex: 999,
+          }}
+        >
+          <ReactLoading type="spin" color="black" width="4rem" height="4rem" />
+        </div>
+      )}
     </>
   );
 }
