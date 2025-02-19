@@ -71,3 +71,13 @@ const initialState = {
   ],
 };
 ```
+
+<br>
+
+## 建立 store
+
+1. 在 /src 下新增 redux 資料夾
+2. 新增 store.js 檔案
+3. 匯入 slice
+4. 透過 configureStore 設定 reducer
+5. 匯出 store
