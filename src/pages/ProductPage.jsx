@@ -116,9 +116,31 @@ function ProductPage({ setIsLogin }) {
     getProducts(page);
   };
 
+  // 登出功能
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post(`${BASE_URL}/logout`);
+      setIsLogin(false);
+    } catch (error) {
+      alert("登出失敗");
+    }
+  };
+
   return (
     <>
       <div className="container mt-5">
+        <div className="row mb-4">
+          <div className="justify-content-end">
+            <button
+              onClick={handleLogout}
+              type="button"
+              className="btn btn-secondary"
+            >
+              登出
+            </button>
+          </div>
+        </div>
+
         <div className="row">
           <div className="col">
             <div className="d-flex justify-content-between">

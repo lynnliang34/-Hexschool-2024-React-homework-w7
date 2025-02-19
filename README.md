@@ -119,3 +119,22 @@ const initialState = {
 - 在 slice 設定 reducers，並將 actions 解構後匯出
   1. removeMessage
      1. 拿到 message id 後，直接透過 splice 刪除
+
+<br>
+
+## 登出功能
+
+1. 戳[登出 API](https://hexschool.github.io/ec-courses-api-swaggerDoc/#/%E7%99%BB%E5%85%A5%E5%8F%8A%E9%A9%97%E8%AD%89/post_v2_logout)
+2. 有用 react router 的話就用 navigate 將使用者導到登入頁。沒有的話則將 setIsAuth 設為 false 即可
+
+登出按鈕模板
+
+```jsx
+<div className="row mb-3">
+  <div className="justify-content-end">
+    <button type="button" className="btn btn-secondary">
+      登出
+    </button>
+  </div>
+</div>
+```
