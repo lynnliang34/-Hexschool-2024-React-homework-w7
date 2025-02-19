@@ -109,3 +109,13 @@ const initialState = {
 
 1. 匯入 action 及 useDispatch
 2. 在通知使用者的地方透過 dispatch action 完成通知
+
+<br>
+
+## 刪除舊的吐司訊息
+
+1. 設定 2 秒後刪除（需撰寫刪除方法與按鈕共用）
+
+- 在 slice 設定 reducers，並將 actions 解構後匯出
+  1. removeMessage
+     1. 拿到 message id 後，直接透過 splice 刪除

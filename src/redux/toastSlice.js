@@ -18,9 +18,19 @@ const toastSlice = createSlice({
         status,
       });
     },
+    removeMessage(state, action) {
+      const message_id = action.payload;
+      const index = state.messages.findIndex(
+        (message) => message.id === message_id
+      );
+
+      if (index !== -1) {
+        state.messages.splice(index, 1);
+      }
+    },
   },
 });
 
-export const { pushMessage } = toastSlice.actions;
+export const { pushMessage, removeMessage } = toastSlice.actions;
 
 export default toastSlice.reducer;

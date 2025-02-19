@@ -100,6 +100,13 @@ function ProductModal({
           },
         }
       );
+
+      dispatch(
+        pushMessage({
+          text: "更新產品成功",
+          status: "success",
+        })
+      );
     } catch (error) {
       alert("更新產品失敗");
     }
@@ -113,13 +120,6 @@ function ProductModal({
       await apiCall();
       getProducts();
       handleCloseProductModal();
-
-      dispatch(
-        pushMessage({
-          text: "更新產品成功",
-          status: "success",
-        })
-      );
     } catch (error) {
       alert("更新產品失敗");
     }
