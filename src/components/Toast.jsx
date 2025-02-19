@@ -16,7 +16,7 @@ export default function Toast() {
         toastInstance.show();
       }
     });
-  }, []);
+  }, [messages]);
 
   return (
     <div className="position-fixed top-0 end-0 p-3" style={{ zIndex: 1000 }}>

@@ -96,3 +96,16 @@ const initialState = {
 1. 取得 slice 中的 messages
 2. 調整 Toast 元件，使用 messages 渲染資料以及 className
 3. 透過 messages 建立 Toast 實例，建立完馬上呼叫 show() 開啟吐司
+
+<br>
+
+## 在 API 回傳後透過 slice 設定的 action 新增吐司訊息（通知使用者結果）
+
+前置作業：
+
+- 在 slice 設定 reducers，並將 actions 解構後匯出
+  1. pushMessage
+     1. 可以透過 Date.now() 作為 id
+
+1. 匯入 action 及 useDispatch
+2. 在通知使用者的地方透過 dispatch action 完成通知

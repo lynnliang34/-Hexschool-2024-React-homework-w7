@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { Modal } from "bootstrap";
+import { useDispatch } from "react-redux";
+import { pushMessage } from "../redux/toastSlice";
 
 // 環境變數
 const BASE_URL = import.meta.env.VITE_BASE_URL;
@@ -39,6 +41,8 @@ function ProductModal({
     }
   }, [isOpen]);
 
+  const dispatch = useDispatch();
+
   // 關閉產品 Modal
   const handleCloseProductModal = () => {
     const modalInstance = Modal.getInstance(productModalRef.current);
@@ -68,7 +72,17 @@ function ProductModal({
         },
       });
     } catch (error) {
-      alert("新增產品失敗");
+      // alert("新增產品失敗");
+      // console.log(error);
+
+      const { message } = error.response.data;
+
+      dispatch(
+        pushMessage({
+          text: message.join("、"),
+          status: "failed",
+        })
+      );
     }
   };
 
@@ -99,6 +113,13 @@ function ProductModal({
       await apiCall();
       getProducts();
       handleCloseProductModal();
+
+      dispatch(
+        pushMessage({
+          text: "更新產品成功",
+          status: "success",
+        })
+      );
     } catch (error) {
       alert("更新產品失敗");
     }
