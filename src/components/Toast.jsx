@@ -1,13 +1,29 @@
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { Toast as BsToast } from "bootstrap";
 
 export default function Toast() {
   const messages = useSelector((state) => state.toast.messages);
+
+  const toastRefs = useRef({});
+
+  useEffect(() => {
+    messages.forEach((message) => {
+      const toastElement = toastRefs.current[message.id];
+
+      if (toastElement) {
+        const toastInstance = new BsToast(toastElement);
+        toastInstance.show();
+      }
+    });
+  }, []);
 
   return (
     <div className="position-fixed top-0 end-0 p-3" style={{ zIndex: 1000 }}>
       {messages.map((message) => (
         <div
           key={message.id}
+          ref={(el) => (toastRefs.current[message.id] = el)}
           className="toast"
           role="alert"
           aria-live="assertive"
@@ -15,11 +31,11 @@ export default function Toast() {
         >
           <div
             className={`toast-header ${
-              message.states === "success" ? "bg-success" : "bg-danger"
+              message.status === "success" ? "bg-success" : "bg-danger"
             } text-white`}
           >
             <strong className="me-auto">
-              {message.states === "success" ? "成功" : "失敗"}
+              {message.status === "success" ? "成功" : "失敗"}
             </strong>
             <button
               type="button"

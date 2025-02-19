@@ -95,3 +95,4 @@ const initialState = {
 
 1. 取得 slice 中的 messages
 2. 調整 Toast 元件，使用 messages 渲染資料以及 className
+3. 透過 messages 建立 Toast 實例，建立完馬上呼叫 show() 開啟吐司
